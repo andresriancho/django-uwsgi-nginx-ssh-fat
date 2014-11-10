@@ -12,7 +12,7 @@ RUN apt-get install -y libgeoip1 libenchant1c2a libmysqlclient-dev mysql-client 
 # Installing requirements
 ADD requirements.txt /tmp/
 RUN cd /tmp/ && pip install --upgrade -r requirements.txt
-
+RUN rm -rf /tmp/pip-build-root
 
 # Just to make it easier to read our build logs
 RUN date
