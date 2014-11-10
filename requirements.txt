@@ -1,0 +1,125 @@
+# REST API
+django-tastypie==0.9.15
+
+# AngularJS-related
+django-cors-headers==0.11
+
+# Accounts
+git+ssh://git@github.com/andresriancho/django-registration.git@25e545f1796cbb77a379941fccab43b17e062e04#egg=django-registration==1.0.1
+django-axes==1.3.6
+django-passwords==0.2.0
+
+# Security
+django_csp==1.0.2
+django-recaptcha==0.0.6
+django-secure==1.0
+django-careful-forms==0.1
+
+# General
+django-taggit==0.12.2
+django-ipware==0.0.8
+pycrypto==2.6
+django-crypto==0.2.0
+requests==2.3.0
+django-gravatar2==1.0.6
+django-bootstrap-toolkit==2.15.0
+South==1.0.1
+django-tastypie-extendedmodelresource==0.22
+chartkick==0.3.0
+django-getenv==1.3.1
+django-dotenv==1.2
+django-storages==1.1.8
+django-fancy-cache==0.6.0
+django-mysqlpool==0.1-9
+MySQL-python==1.2.5
+lazypy==0.5
+git+ssh://git@github.com/andresriancho/django-celery-email.git@ff4753d23f769e9eaf9c576feffb2f3f06100c59#egg=django-celery-email==1.0.5
+
+# Added get_profile() to EmailUser
+# https://github.com/recreatic/django-custom-user/pull/11
+git+ssh://git@github.com/andresriancho/django-custom-user.git@1d628320f9d9d86827af25a86df257c48cdf309b#egg=django-custom-user==0.4
+
+# Redis cache
+django-redis-cache==0.13.0
+hiredis==0.1.3
+redis==2.9.1
+
+# We want to edit HTML for FAQ with a nice UI
+django-suit==0.2.3
+django-suit-redactor==0.0.2
+
+# Send templated emails using SSL
+django-smtp-ssl==1.0
+django-templated-email==0.4.9
+
+# Store some configurations in a database backend
+django-constance[database]==0.6
+django-picklefield==0.3.1
+
+# Email, Webhook, etc. are all notification objects
+django-model-utils==1.4.0
+
+# Human readable dates
+ago==0.0.5
+
+# Easy date iteration
+python-dateutil==2.1
+
+# bootstrap templated pagination
+django-pagination-bootstrap==1.0.5
+
+supervisor==3.1.2
+
+Celery==3.1.6
+SQLAlchemy==0.8.1
+boto==2.34.0
+
+django-celery==3.0.17
+
+msgpack-python==0.3.0
+
+# Reporting and monitoring
+newrelic==2.8.0.7
+raven==3.3.12
+
+# Testing
+pylint==1.1.0
+django-nose==1.1
+nose-exclude==0.1.9
+coverage==3.6
+nose-cov==1.6
+coveralls==0.2
+moto==0.3.7
+django-debug-toolbar==1.2.1
+django-debug-toolbar-line-profiler==0.4.0
+django-debug-toolbar-template-timings==0.6.4
+yanc==0.2.4
+mock==1.0.1
+factory_boy==2.1.2
+httpretty==0.8.3
+nose==1.3.0
+selenium==2.33.0
+xvfbwrapper==0.2.2
+freezegun==0.1.8
+LinkChecker==9.2
+django-with-asserts==0.0.1
+
+# Get some extensions for the manage.py command
+django-extensions==1.3.3
+
+# For importing sphinx documentation into models and searching
+Sphinx==1.2b1
+sphinxcontrib-spelling==1.4
+pyenchant==1.6.5
+django-sphinxdoc==1.2.0
+django-haystack==2.1.0
+
+# Requirements for django_plans and the app itself
+vatnumber==1.1
+suds==0.4
+django-countries==1.5
+git+https://github.com/andresriancho/django-ordered-model.git@a4e05e68ea46c4205b8a1a15e338c658aebb8f97#egg=django-ordered-model
+git+https://github.com/andresriancho/django-plans.git@3cfc36b261c0dbdd7a0d3294f03dafcf9620c36f#egg=django-plans==0.8.2
+
+# I use this for the docker build process, but it's simpler to just add it here
+git+https://github.com/andresriancho/docker-jinja.git@f52eed2f6f608b3476d31d07e4a5a6c59104bea5#egg=docker-jinja
