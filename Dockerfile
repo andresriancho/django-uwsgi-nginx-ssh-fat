@@ -6,7 +6,7 @@ MAINTAINER Andres Riancho version: 0.2
 
 # Install any required OS dependencies
 RUN apt-get update -y
-RUN apt-get install -y libgeoip1 libenchant1c2a libmysqlclient-dev mysql-client apache2-utils libxml2-dev libxslt1-dev
+RUN apt-get install -y rsyslog libgeoip1 libenchant1c2a libmysqlclient-dev mysql-client apache2-utils libxml2-dev libxslt1-dev
 
 
 # Installing requirements
