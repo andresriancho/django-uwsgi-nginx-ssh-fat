@@ -10,9 +10,13 @@ RUN apt-get install -y libgeoip1 libenchant1c2a libmysqlclient-dev mysql-client 
 
 
 # Installing requirements
-ADD requirements.txt /tmp/
-RUN cd /tmp/ && pip install --upgrade -r requirements.txt
-RUN rm -rf /tmp/pip-build-root
+ADD . /tmp/
+WORKDIR /tmp/
+
+RUN pip install --upgrade -r requirements.txt && rm -rf /tmp/pip-build-root
+
+# Save the -fat git revision fo we can easily identify it's version
+RUN git rev-parse --short HEAD > /home/docker/base/git-revision.fat
 
 # Just to make it easier to read our build logs
 RUN date
