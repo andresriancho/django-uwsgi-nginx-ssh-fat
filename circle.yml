@@ -2,9 +2,13 @@ machine:
   services:
     - docker
 
+
 dependencies:
   override:
-    - echo "No dependencies."
+    # Setup all requirements
+    - pip install --upgrade pip
+    - pip install docker-tag-naming
+
 
 test:
   override:
@@ -22,15 +26,17 @@ deployment:
       #
       # Build the docker image and upload it to the registry
       #
-      - docker build -t andresriancho/django-uwsgi-nginx-ssh-fat:${CIRCLE_SHA1:0:7}-production .
+      - docker build -t andresriancho/django-uwsgi-nginx-ssh-fat .
 
       # Push the new image to docker registry
       - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" < dockercfg.template > ~/.dockercfg
 
-      - docker tag andresriancho/django-uwsgi-nginx-ssh-fat:${CIRCLE_SHA1:0:7}-production andresriancho/django-uwsgi-nginx-ssh-fat:production
-      - docker tag andresriancho/django-uwsgi-nginx-ssh-fat:${CIRCLE_SHA1:0:7}-production andresriancho/django-uwsgi-nginx-ssh-fat:latest
+      - docker-tag-naming bump andresriancho/django-uwsgi-nginx-ssh ${CIRCLE_BRANCH} --commit-id ${CIRCLE_SHA1:0:7} > /tmp/docker-tag.txt
 
-      - docker push andresriancho/django-uwsgi-nginx-ssh-fat:${CIRCLE_SHA1:0:7}-production
+      - docker tag andresriancho/django-uwsgi-nginx-ssh-fat andresriancho/django-uwsgi-nginx-ssh-fat:production
+      - docker tag andresriancho/django-uwsgi-nginx-ssh-fat andresriancho/django-uwsgi-nginx-ssh-fat:`cat /tmp/docker-tag.txt`
+
+      - docker push andresriancho/django-uwsgi-nginx-ssh-fat:`cat /tmp/docker-tag.txt`
       - docker push andresriancho/django-uwsgi-nginx-ssh-fat:production
       - docker push andresriancho/django-uwsgi-nginx-ssh-fat:latest
 
@@ -41,12 +47,15 @@ deployment:
       #
       # Build the docker image and upload it to the registry
       #
-      - docker build -t andresriancho/django-uwsgi-nginx-ssh-fat:${CIRCLE_SHA1:0:7}-staging .
+      - docker build -t andresriancho/django-uwsgi-nginx-ssh-fat .
 
       # Push the new image to docker registry
       - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" < dockercfg.template > ~/.dockercfg
 
-      - docker tag andresriancho/django-uwsgi-nginx-ssh-fat:${CIRCLE_SHA1:0:7}-staging andresriancho/django-uwsgi-nginx-ssh-fat:staging
+      - docker-tag-naming bump andresriancho/django-uwsgi-nginx-ssh ${CIRCLE_BRANCH} --commit-id ${CIRCLE_SHA1:0:7} > /tmp/docker-tag.txt
 
-      - docker push andresriancho/django-uwsgi-nginx-ssh-fat:${CIRCLE_SHA1:0:7}-staging
+      - docker tag andresriancho/django-uwsgi-nginx-ssh-fat andresriancho/django-uwsgi-nginx-ssh-fat:staging
+      - docker tag andresriancho/django-uwsgi-nginx-ssh-fat andresriancho/django-uwsgi-nginx-ssh-fat:`cat /tmp/docker-tag.txt`
+
+      - docker push andresriancho/django-uwsgi-nginx-ssh-fat:`cat /tmp/docker-tag.txt`
       - docker push andresriancho/django-uwsgi-nginx-ssh-fat:staging
